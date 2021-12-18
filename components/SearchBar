@@ -1,0 +1,66 @@
+// import React from 'react';
+// import SearchBar from 'react-native-elements';
+
+// export default class App extends React.Component {
+//     state = {
+//         search:'',
+//     };
+
+//     updateSearch = (search) => {
+//         this.setState({ search });
+//     };
+
+//     render() {
+//         const { search } = this.state;
+
+//         return (
+//             <SearchBar
+//             placeholder="Type Here..."
+//             onChangeText={this.updateSearch}
+//             value={search}
+//             />
+//         );
+//     }
+// }
+
+import React from "react";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
+
+const SearchBar = ({ setFilter }) => {
+    //set query terms from provided list
+    const options = [
+        { value: 'all', label: 'All' },
+        { value: 'Health Care', label: 'Health Care' },
+        { value: 'Industrials', label: 'Industrials' },
+        { value: 'Consumer Discretionary', label: 'Consumer Discretionary' },
+        { value: 'Information Technology', label: 'Information Technology' },
+        { value: 'Consumer Staples', label: 'Consumer Staples' },
+        { value: 'Utilities', label: 'Utilities' },
+        { value: 'Financials', label: 'Financials' },
+        { value: 'Real Estate', label: 'Real Estate' },
+        { value: 'Materials', label: 'Materials' },
+        { value: 'Energy', label: 'Energy' },
+        { value: 'Telecommunication Services', label: 'Telecommunication Services' }
+      ]
+
+    //get animated components wrapper
+    const animatedComponents = makeAnimated();
+
+    const handleChange = value => {
+        console.log("Handle change ",value);
+        setFilter(value)
+    }
+
+    return (
+      <>
+        <Select
+            components={animatedComponents}
+            onChange={(value) => handleChange(value)}
+            options={options}
+        />
+      </>
+    )
+}
+
+export default SearchBar;
